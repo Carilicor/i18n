@@ -1,17 +1,23 @@
+import { useState } from 'react'
 import English from './lang/en.json'
 import Spanish from './lang/es.json'
 import './App.css';
 
 const locale = navigator.language || 'en';
-const lang = (locale === 'es') ? Spanish : English;
+const _lang = (locale === 'es') ? Spanish : English;
 
 function App() {
+  const [lang, setLang] = useState(_lang)
   return (
     <div className="App">
       <header className="App-header">
+        <div> 
+        <button onClick={() => setLang(English)}>EN</button>
+        <button onClick={() => setLang(Spanish)}>Es</button>
+        </div>
         <h1>{lang["app.header"]}</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+        {lang["app.subhead"]}
         </p>
         <a
           className="App-link"
@@ -19,7 +25,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          {lang["app.cta"]}
         </a>
       </header>
     </div>
